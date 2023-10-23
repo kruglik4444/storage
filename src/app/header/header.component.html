@@ -1,0 +1,10 @@
+<mat-toolbar *ngIf="isAuthenticated" color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Костромская государственная больница</span>
+  <span class="example-spacer"></span>
+  <button (click)="logout()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>

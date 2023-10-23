@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white !important;
+    padding: 0 0 0 0 !important;
+  }
+  
+  // Manipulate background color on hover and focus
+  .mat-mdc-form-field-focus-overlay {
+    background-color: transparent !important;
+  }
+  
+.mat-mdc-form-field-error-wrapper {
+  padding: 0 0 0 0 !important;
+}

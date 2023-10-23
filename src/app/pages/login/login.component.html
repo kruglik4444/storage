@@ -1,0 +1,49 @@
+<div>
+  <mat-card class="login">
+    <mat-card-header>
+      <mat-card-title>Костромская больница</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="tw-mt-3">
+      <form [formGroup]="form">
+        <mat-form-field class="tw-w-full">
+          <mat-label>Логин</mat-label>
+          <input
+            formControlName="userName"
+            type="email"
+            matInput
+            required
+            placeholder="Введи логин"
+          />
+          <mat-error *ngIf="form.controls['userName'].hasError('required')">
+            Введи логин
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="tw-w-full">
+          <mat-label>Пароль</mat-label>
+          <input
+            formControlName="password"
+            type="password"
+            minlength="6"
+            matInput
+            required
+            placeholder="Введи пароль"
+          />
+          <mat-error *ngIf="form.controls['password'].hasError('required')">
+            Введи пароль
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="tw-flex tw-gap-x-3 tw-mt-3">
+      <button (click)="login('signIn')" [disabled]="!form.valid" mat-flat-button color="primary">
+        Войти
+      </button>
+      <button (click)="login('signUp')" [disabled]="!form.valid" mat-stroked-button>
+        Зарегестироваться
+      </button>
+    </mat-card-actions>
+    <div class="tw-mt-3">
+      <app-notification [message]="errorMessage"></app-notification>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,69 @@
+<mat-card class="tw-mt-5 tw-px-16">
+  <mat-card-header>
+    <mat-card-title>Регистрация нового пользователя</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="tw-mt-5">
+    <form [formGroup]="form">
+      <div class="tw-flex tw-gap-5 tw-mb-2">
+        <mat-form-field class="tw-basis-1/4">
+          <mat-label>Фамилия</mat-label>
+          <input
+            formControlName="userLastName"
+            type="text"
+            matInput
+            required
+            placeholder="Введи фамилию"
+          />
+          <mat-error *ngIf="form.controls['userLastName'].hasError('required')">
+            Введи фамилию
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="tw-basis-1/4">
+          <mat-label>Имя</mat-label>
+          <input
+            formControlName="userFirstName"
+            type="text"
+            matInput
+            required
+            placeholder="Введи имя"
+          />
+          <mat-error *ngIf="form.controls['userFirstName'].hasError('required')">
+            Введи имя
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="tw-basis-1/4">
+          <mat-label>Отчество</mat-label>
+          <input
+            formControlName="userMiddleName"
+            type="text"
+            matInput
+            required
+            placeholder="Введи отчество"
+          />
+          <mat-error *ngIf="form.controls['userMiddleName'].hasError('required')">
+            Введи отчество
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="tw-basis-1/4">
+          <mat-label>Дата рождения</mat-label>
+          <input formControlName="userBirthDate" matInput [matDatepicker]="picker" />
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="form.controls['userBirthDate'].hasError('required')">
+            Введи дату рождения
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="tw-flex tw-gap-5">
+        <button color="primary" mat-stroked-button (click)="fileInput.click()">
+          <span>Загрузить фотографию</span>
+          <input #fileInput type="file" (change)="onFileSelected($event)" style="display:none;" />
+        </button>
+        <button color="primary" mat-stroked-button (click)="fileInput.click()">
+          <span>Загрузить скан паспорта</span>
+          <input #fileInput type="file" (change)="onFileSelected($event)" style="display:none;" />
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
