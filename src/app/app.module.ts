@@ -6,21 +6,22 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AppMaterialModule } from './app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { provideStorage,getStorage } from '@angular/fire/storage';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
+import { LoginIntercepterService } from './pages/login/login-intercepter.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    EditProfileComponent
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,8 +35,13 @@ import { environment } from '../environments/environment';
     SharedModule,
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoginIntercepterService,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

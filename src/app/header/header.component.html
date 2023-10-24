@@ -1,7 +1,17 @@
 <mat-toolbar *ngIf="isAuthenticated" color="primary">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>Профиль</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>event</mat-icon>
+      <span>Записаться на приём</span>
+    </button>
+  </mat-menu>
   <span>Костромская государственная больница</span>
   <span class="example-spacer"></span>
   <button (click)="logout()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">

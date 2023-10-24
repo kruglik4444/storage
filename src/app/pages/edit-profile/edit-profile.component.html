@@ -11,7 +11,6 @@
             formControlName="userLastName"
             type="text"
             matInput
-            required
             placeholder="Введи фамилию"
           />
           <mat-error *ngIf="form.controls['userLastName'].hasError('required')">
@@ -24,10 +23,11 @@
             formControlName="userFirstName"
             type="text"
             matInput
-            required
             placeholder="Введи имя"
           />
-          <mat-error *ngIf="form.controls['userFirstName'].hasError('required')">
+          <mat-error
+            *ngIf="form.controls['userFirstName'].hasError('required')"
+          >
             Введи имя
           </mat-error>
         </mat-form-field>
@@ -37,32 +37,135 @@
             formControlName="userMiddleName"
             type="text"
             matInput
-            required
             placeholder="Введи отчество"
           />
-          <mat-error *ngIf="form.controls['userMiddleName'].hasError('required')">
+          <mat-error
+            *ngIf="form.controls['userMiddleName'].hasError('required')"
+          >
             Введи отчество
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="tw-basis-1/4">
-          <mat-label>Дата рождения</mat-label>
-          <input formControlName="userBirthDate" matInput [matDatepicker]="picker" />
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="form.controls['userBirthDate'].hasError('required')">
-            Введи дату рождения
+        <mat-form-field>
+          <mat-label>Пол</mat-label>
+          <mat-select formControlName="userGender">
+            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+              {{ gender.value }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.controls['userGender'].hasError('required')">
+            Выбери пол
           </mat-error>
         </mat-form-field>
       </div>
-      <div class="tw-flex tw-gap-5">
-        <button color="primary" mat-stroked-button (click)="fileInput.click()">
-          <span>Загрузить фотографию</span>
-          <input #fileInput type="file" (change)="onFileSelected($event)" style="display:none;" />
-        </button>
-        <button color="primary" mat-stroked-button (click)="fileInput.click()">
-          <span>Загрузить скан паспорта</span>
-          <input #fileInput type="file" (change)="onFileSelected($event)" style="display:none;" />
-        </button>
+      <div class="tw-flex tw-gap-5 tw-mb-2">
+        <mat-form-field class="tw-basis-1/4">
+          <mat-label>Дата рождения</mat-label>
+          <input
+            formControlName="userBirthDate"
+            matInput
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="form.controls['userBirthDate'].hasError('required')"
+          >
+            Введи дату рождения
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="tw-basis-1/4">
+          <mat-label>СНИЛС</mat-label>
+          <input
+            formControlName="userSnils"
+            type="text"
+            matInput
+            maxlength="11"
+            placeholder="Введи снилс"
+          />
+          <mat-error *ngIf="form.controls['userSnils'].hasError('required')">
+            Введи СНИЛС
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="tw-basis-1/4">
+          <mat-label>Номер телефона</mat-label>
+          <input
+            formControlName="userPhone"
+            type="text"
+            matInput
+            maxlength="11"
+            placeholder="Введи номер телефона"
+          />
+          <mat-error *ngIf="form.controls['userPhone'].hasError('required')">
+            Введи номер телефона
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="tw-basis-1/4">
+          <mat-label>Адрес</mat-label>
+          <input
+            formControlName="userAddress"
+            type="text"
+            matInput
+            placeholder="Введи адрес"
+          />
+          <mat-error *ngIf="form.controls['userAddress'].hasError('required')">
+            Введи адрес
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="tw-flex tw-justify-between">
+        <div class="tw-flex tw-gap-5">
+          <button
+            color="primary"
+            mat-stroked-button
+            (click)="photoInput.click()"
+          >
+            <span>Загрузить фотографию</span>
+            <input
+              formControlname="userPhoto"
+              #photoInput
+              type="file"
+              (change)="onFileSelected($event, 'photo')"
+              style="display: none"
+            />
+          </button>
+          <mat-icon
+            *ngIf="form.controls['userPhoto'].valid"
+            class="tw-text-green-600 tw-mt-1"
+            >check_circle</mat-icon
+          >
+          <button
+            color="primary"
+            mat-stroked-button
+            (click)="passportInput.click()"
+          >
+            <span>Загрузить скан паспорта</span>
+            <input
+              formControlname="userPassport"
+              class="tw-hidden"
+              #passportInput
+              type="file"
+              (change)="onFileSelected($event, 'passport')"
+            />
+          </button>
+          <mat-icon
+            *ngIf="form.controls['userPassport'].valid"
+            class="tw-text-green-600 tw-mt-1"
+            >check_circle</mat-icon
+          >
+        </div>
+        <div>
+          <button
+            (click)="next()"
+            [disabled]="!form.valid"
+            color="primary"
+            mat-raised-button
+          >
+            Продолжить
+          </button>
+        </div>
       </div>
     </form>
   </mat-card-content>

@@ -1,0 +1,19 @@
+mat-card {
+    @apply tw-px-6;
+}
+
+mat-card-title {
+    @apply tw-text-2xl;
+}
+
+mat-card-content {
+    @apply tw-mt-5;
+}
+
+.title {
+    @apply tw-text-base;
+}
+
+.line {
+    @apply tw-text-sm
+}

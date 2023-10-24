@@ -113,6 +113,10 @@ export class LoginService {
     }, expirationDuration);
   }
 
+  registerNewUser(data: any, userId: string) {
+    return this.http.post(`https://storage-b8c7b-default-rtdb.firebaseio.com/clients/${userId}.json`, data)
+  }
+
   private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, userId, token, expirationDate);
