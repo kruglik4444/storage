@@ -6,42 +6,41 @@
   </mat-card-header>
   <mat-card-content>
     <div class="tw-flex tw-gap-10">
-
       <div class="tw-flex tw-flex-col">
         <img class="tw-h-[250px] tw-mb-3" src="{{ photoURL }}" />
-        <button (click)="showPassport()" mat-stroked-button color="primary">Показать паспорт</button>
+        <button (click)="showPassport()" mat-stroked-button color="primary">
+          Показать паспорт
+        </button>
       </div>
 
       <div>
         <mat-list>
-
           <mat-list-item>
             <span class="title" matListItemTitle>Дата рождения</span>
-            <span class="line" matListItemLine>{{user.userBirthDate | date}}</span>
+            <span class="line" matListItemLine>{{
+              user.userBirthDate | date
+            }}</span>
           </mat-list-item>
-          
+
           <mat-list-item>
             <span class="title" matListItemTitle>Адрес проживания</span>
-            <span class="line" matListItemLine>{{user.userAddress}}</span>
+            <span class="line" matListItemLine>{{ user.userAddress }}</span>
           </mat-list-item>
 
           <mat-list-item>
             <span class="title" matListItemTitle>Номер телефона</span>
-            <span class="line" matListItemLine>{{user.userPhone}}</span>
+            <span class="line" matListItemLine>{{ user.userPhone }}</span>
           </mat-list-item>
 
           <mat-list-item>
             <span class="title" matListItemTitle>СНИЛС</span>
-            <span class="line" matListItemLine>{{user.userSnils}}</span>
+            <span class="line" matListItemLine>{{ user.userSnils }}</span>
           </mat-list-item>
-        
         </mat-list>
       </div>
 
-      <div>
-
-      </div>
-
+      <app-dasboard></app-dasboard>
+      
     </div>
   </mat-card-content>
 </mat-card>

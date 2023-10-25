@@ -3,11 +3,11 @@
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button (click)="goToProfile()" mat-menu-item>
       <mat-icon>person</mat-icon>
       <span>Профиль</span>
     </button>
-    <button mat-menu-item>
+    <button (click)="goToAppointment()" mat-menu-item>
       <mat-icon>event</mat-icon>
       <span>Записаться на приём</span>
     </button>

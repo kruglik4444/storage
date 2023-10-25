@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoginService } from '../pages/login/login.service';
 import { Subject, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroyed$ = new Subject<void>();
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginService.user.pipe(takeUntil(this.destroyed$)).subscribe((user) => {
@@ -27,5 +28,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout(): void {
     this.loginService.logOut();
+  }
+
+  goToAppointment() {
+    this.router.navigate(['/appointment'])
+  }
+
+  goToProfile() {
+    this.router.navigate(['/user-account'])
   }
 }

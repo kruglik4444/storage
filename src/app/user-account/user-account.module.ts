@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { UserAccountComponent } from './user-account.component';
 import { UserAccountRoutingModule } from './user-account-routing.module';
 import { AppMaterialModule } from '../app-material.module';
+import { DasboardComponent } from './components/dasboard/dasboard.component';
 
 
 
 @NgModule({
   declarations: [
-    UserAccountComponent
+    UserAccountComponent,
+    DasboardComponent,
   ],
   imports: [
     CommonModule,
